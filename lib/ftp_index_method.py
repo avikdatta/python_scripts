@@ -1,9 +1,17 @@
+#!/usr/bin/env python3
+
 import os,sys
 from ftplib import FTP
 from tempfile import mkdtemp
 from shutil import rmtree
+from http.client import HTTPConnection
+from urllib.parse import urlsplit
+
 
 def get_temp_dir(work_dir,prefix='temp'):
+  '''
+  This function returns a temporary directory
+  '''
   try:
     temp_dir=mkdtemp(prefix=prefix,dir=work_dir)
     return temp_dir
@@ -11,6 +19,9 @@ def get_temp_dir(work_dir,prefix='temp'):
     print('Error: %s' % e)
  
 def clean_temp_dir(temp_dir): 
+  '''
+   This function delete a directory and all its contents
+  '''
   if os.path.isdir(temp_dir):
     try :
       rmtree(temp_dir)
@@ -20,6 +31,9 @@ def clean_temp_dir(temp_dir):
       print('removed %s' % temp_dir)
 
 def get_ftp_index(ftp_url='ftp.debian.org', dir='debian',index='README'):
+  '''
+  This function connect to a FTP server and retrieve a file
+  '''
   with FTP(ftp_url) as ftp:
     ftp.login()
     ftp.cwd(dir)
@@ -53,4 +67,19 @@ def read_index_file(infile, f_header=[]):
       else:
         header=row
   return file_list
+
+def check_ftp_url(full_url):
+  '''
+  This function checks if an url is accessible and returns its http response code
+  '''
+  url=urlsplit(full_url) 
+  conn = HTTPConnection(url.netloc)
+  conn.request("HEAD",url.path)
+  res = conn.getresponse()
+  return res.status
+  
+if __name__=='__main__':
+  url='http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/GRCh38/Cell_Line/BL-2/Sporadic_Burkitt_lymphoma/ChIP-Seq/NCMLS/BL-2_c01.ERX297411.H3K4me1.bwa.GRCh38.20150528.bw'
+  code=check_ftp_url(url)
+  print(code)
 
