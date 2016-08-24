@@ -2,6 +2,25 @@ import os,sys
 import re
 from collections import defaultdict
 
+def file_dict(experiment,url_prefix):
+  file_name=os.path.basename(experiment['FILE'])
+  lib_strategy=experiment['LIBRARY_STRATEGY']
+
+  if file_name.endswith('bw'):
+    if re.match(r'plusStrand', file_name, re.IGNORECASE):
+      type='signal_forward'
+    elif re.match(r'minusStrand', file_name, re.IGNORECASE):
+      type='signal_reverse'
+    else:
+      type='signal'
+  elif file_name.endswith('bb'):
+      type='peak_calls'
+  browser_dict=defaultdict(dict)
+  browser_dict[type]['big_data_url']=url_prefix + experiment['FILE']
+  browser_dict[type]['md5sum']=experiment['FILE_MD5']
+  browser_dict[type]['primary']='true'
+  return browser_dict
+
 def read_index_file(infile, key_text):
   '''
      Read an index file and a list of fields (optional)
@@ -16,14 +35,12 @@ def read_index_file(infile, key_text):
 
   with open(infile, 'r') as f:
     header=[]
-    file_list={}
+    file_list=defaultdict(list)
     for i in f:
       row=i.split("\t")
       if(header):
         filtered_dict=dict(zip(header,row))
         exp_id=filtered_dict[key_text]
-        if exp_id not in file_list.keys():
-          file_list[exp_id]=[]
         file_list[exp_id].append(filtered_dict)
       else:
         header=map(str.upper, row)
