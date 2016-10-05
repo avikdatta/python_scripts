@@ -3,7 +3,7 @@ This script is based on [Flask-RESTful package](https://github.com/flask-restful
 
 ##Usage
 ###Run REST service
-<pre><code>python json_report_restapi.py -i <host_ip> (default:127.0.0.1)
+<pre><code>python json_report_restapi.py -i host_ip (default:127.0.0.1)
 </pre></code>
 
 ###Query example
