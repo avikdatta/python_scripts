@@ -6,8 +6,8 @@ This script generated a summary report using the index files present in the Blue
  <pre><code>python blueprint_index_stats_to_json.py -i /path/name_of_.index
  </pre></code>
 
-##Requirement
-  <pre><code><ul>
-  <li>Python3</li>
-  <li>[Pandas](http://pandas.pydata.org/)</li>
-  <li>Json</ul></pre></code>
+##Requirements
+<pre><code><ul>
+<li>Python3</li>
+<li>[Pandas](http://pandas.pydata.org/)</li>
+<li>Json</ul></pre></code>
