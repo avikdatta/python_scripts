@@ -7,7 +7,7 @@ This script generated a summary report using the index files present in the Blue
  </pre></code>
 
 ##Requirements
-<ul>
-<li>Python3</li>
-<li>[Pandas](http://pandas.pydata.org/)</li>
-<li>Json</ul>
+
+  * Python3
+  * [Pandas](http://pandas.pydata.org/)
+  * Json
