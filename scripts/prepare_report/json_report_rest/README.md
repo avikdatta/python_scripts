@@ -1,5 +1,5 @@
 #A REST API for the JSON reports
-This script is based on [Flask-RESTful package](https://github.com/flask-restful/flask-restful). In the default mode this api runs on the localhost with port 5000.
+This script is for fetching JSON report from a REST API developed using [Flask-RESTful package](https://github.com/flask-restful/flask-restful). In the default mode this api runs on the localhost with port 5000.
 
 ##Usage
 ###Run REST service
