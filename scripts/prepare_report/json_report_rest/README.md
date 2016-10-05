@@ -11,10 +11,10 @@ This script is for fetching JSON report from a REST API developed using [Flask-R
 </pre></code>
 
 ##Requirements
-<pre><code><ul>
+<ul>
 <li>Python3</li>
 <li>[Pandas](http://pandas.pydata.org/)</li>
 <li>[Flask](http://flask.pocoo.org/)</li>
 <li>[Flask-RESTful](https://github.com/flask-restful/flask-restful)</li>
-<li>Json</ul></pre></code>
+<li>Json</ul>
 
