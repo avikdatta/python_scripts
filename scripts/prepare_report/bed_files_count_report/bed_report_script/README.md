@@ -1,5 +1,5 @@
 # A script for generating peak counts for bed file
-This script accepts an [index file]() and an experiment id and can fetch the bed file from Blueprint FTP site and preoduce the peak count stats for each chromosome. It generates a JSON output dump and a png plot for the primary chromosomes.
+This script accepts an [index file](http://ftp.ebi.ac.uk/pub/databases/blueprint/releases/current_release/homo_sapiens/20160816.data.index) and an experiment id and can fetch the bed file from Blueprint FTP site and preoduce the peak count stats for each chromosome. It generates a JSON output dump and a png plot for the primary chromosomes.
 
 ##Usage
   <pre><code>

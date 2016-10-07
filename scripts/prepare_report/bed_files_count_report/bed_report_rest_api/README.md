@@ -1,5 +1,5 @@
 # A REST Api for generating peak counts for bed file
-This rest api can read an [index file]() and an experiment id and fetch the bed file from Blueprint FTP site and preoduce the peak count stats for each chromosome. It can generate either a JSON output dump or a png plot for the primary chromosomes.
+This rest api can read an [index file](http://ftp.ebi.ac.uk/pub/databases/blueprint/releases/current_release/homo_sapiens/20160816.data.index) and an experiment id and fetch the bed file from Blueprint FTP site and preoduce the peak count stats for each chromosome. It can generate either a JSON output dump or a png plot for the primary chromosomes.
 
 ##Usage
 ###Run Api script
@@ -41,4 +41,6 @@ This rest api can read an [index file]() and an experiment id and fetch the bed 
 * Tempfile
 * Matplotlib
 * Urllib
+* Flask
+* Flask-RESTful
 
