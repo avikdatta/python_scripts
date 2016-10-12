@@ -47,9 +47,9 @@ class Plot_histone(Resource):
     h_parser=reqparse.RequestParser()
     h_parser.add_argument('histone', required=True, help='Histone mark name')
     h_parser.add_argument('chr', default=chrs, action='append', help='Lists of chromosomes')
-    h_parser.add_argument('fig_width', default=12, help='Figure width')
-    h_parser.add_argument('fig_height', default=8, help='Figure height')
-    h_parser.add_argument('fig_font', default=10, help='Figure fontsize')
+    h_parser.add_argument('fig_width', type=int, default=12, help='Figure width')
+    h_parser.add_argument('fig_height', type=int, default=8, help='Figure height')
+    h_parser.add_argument('fig_font', type=int, default=10, help='Figure fontsize')
 
     h_args=h_parser.parse_args()
     
@@ -66,6 +66,7 @@ class Plot_histone(Resource):
         os.chdir(temp_dir)
         filename=histone+'.png'
         filename=os.path.join(temp_dir,filename)
+
         plot_box_chart(dataframe=peak_data[histone_exps].T, filename=filename, chr_list=chr_list, fig_width=fig_width, fig_height=fig_height, fig_font=fig_font)
         return output_png(file=filename,code=201)
       except Exception as e:
@@ -82,9 +83,9 @@ class Plot_all_data(Resource):
   def get(self):
     h_parser=reqparse.RequestParser()
     h_parser.add_argument('chr', default=chrs, action='append', help='Lists of chromosomes')
-    h_parser.add_argument('fig_width', default=12, help='Figure width')
-    h_parser.add_argument('fig_height', default=8, help='Figure height')
-    h_parser.add_argument('fig_font', default=10, help='Figure fontsize')
+    h_parser.add_argument('fig_width', type=int, default=12, help='Figure width')
+    h_parser.add_argument('fig_height', type=int, default=8, help='Figure height')
+    h_parser.add_argument('fig_font', type=int, default=10, help='Figure fontsize')
     h_args=h_parser.parse_args()
 
     chr_list   = h_args['chr']
