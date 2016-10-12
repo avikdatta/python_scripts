@@ -40,6 +40,9 @@ def output_png(file, code, headers=None):
 
 
 class Plot_histone(Resource):
+  '''
+  Plot peak count for specific histone mark
+  '''
   def get(self):
     h_parser=reqparse.RequestParser()
     h_parser.add_argument('histone', required=True, help='Histone mark name')
@@ -56,7 +59,6 @@ class Plot_histone(Resource):
         os.chdir(temp_dir)
         filename=histone+'.png'
         filename=os.path.join(temp_dir,filename)
-        print(filename)
         plot_box_chart(dataframe=peak_data[histone_exps].T, filename=filename, chr_list=chrs)
         return output_png(file=filename,code=201)
       except Exception as e:
@@ -66,9 +68,34 @@ class Plot_histone(Resource):
     else:
       abort(404,message='unsupported histone name: {0}'.format(histone))
 
+class Plot_all_data(Resource):
+  '''
+  Plot peak count for all histone marks
+  '''
+  def get(self):
+    h_parser=reqparse.RequestParser()
+    h_parser.add_argument('chr', default=chrs, action='append', help='Lists of chromosomes')
+    h_args=h_parser.parse_args()
 
+    chr_list=h_args['chr']
 
+    try:
+      temp_dir=get_temp_dir(work_dir=work_dir)
+      os.chdir(temp_dir)
+      filename='all_histone.png'
+      filename=os.path.join(temp_dir,filename)
+      plot_box_chart(dataframe=peak_data.T, filename=filename, chr_list=chrs)
+      return output_png(file=filename,code=201)
+    except Exception as e:
+      abort(404, message='got error')
+    finally:
+      clean_temp_dir(temp_dir)
+
+      
+
+    
 api.add_resource(Plot_histone, '/histone_peak')
+api.add_resource(Plot_all_data, '/all_histone')
 
 if __name__=='__main__':
   app.run(host=host)
