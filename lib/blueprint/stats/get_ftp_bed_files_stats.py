@@ -34,9 +34,10 @@ def plot_from_bed_count(data_list, output_file):
   order_list=['chr1', 'chr2','chr3','chr4','chr5','chr6','chr7','chr8','chr9','chr10', 'chr11','chr12','chr13','chr14','chr15', 'chr16', 'chr17', 'chr18', 'chr19', 'chr20', 'chr21', 'chr22']
   df=df.set_index('chr')
   df=df.reindex(order_list)
-  plt.figure()
+  fig=plt.figure()
   df.plot(kind='bar',fontsize=8)
-  plt.savefig(output_file)
+  fig.savefig(output_file)
+  plt.close("all")
   
 def read_bed_file(file):
   columns=['chr','start','end','name','score,', 'dot','fold_change','log10p','log10q','summit']
