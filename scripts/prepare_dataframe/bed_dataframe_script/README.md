@@ -1,5 +1,5 @@
 # A script for preparing peak count for all bed files
-This script can read an [index file](ftp://ftp.ebi.ac.uk/pub/databases/blueprint/releases/current_release/homo_sapiens/20160816.data.index) and fetch all the ChIP-Seq bed files from Blueprint's [FTP site](ftp://ftp.ebi.ac.uk/pub/databases/blueprint/data/). Then it generates an individual bed peak counts plot for each experiments and also combine these counts for all the bed file and store it in an output csv file.
+This script can read an [index file](http://ftp.ebi.ac.uk/pub/databases/blueprint/releases/current_release/homo_sapiens/20160816.data.index) and fetch all the ChIP-Seq bed files from Blueprint's [FTP site](http://ftp.ebi.ac.uk/pub/databases/blueprint/data/). Then it generates an individual bed peak counts plot for each experiments and also combine these counts for all the bed file and store it in an output csv file.
 
 ##Usage
 <pre><code>
