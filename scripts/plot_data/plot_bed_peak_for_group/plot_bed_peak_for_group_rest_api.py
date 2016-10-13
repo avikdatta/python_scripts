@@ -66,8 +66,9 @@ class Plot_histone(Resource):
         os.chdir(temp_dir)
         filename=histone+'.png'
         filename=os.path.join(temp_dir,filename)
+        title='Peak count for histone '+histone
 
-        plot_box_chart(dataframe=peak_data[histone_exps].T, filename=filename, chr_list=chr_list, fig_width=fig_width, fig_height=fig_height, fig_font=fig_font)
+        plot_box_chart(dataframe=peak_data[histone_exps].T, filename=filename, chr_list=chr_list, fig_width=fig_width, fig_height=fig_height, fig_font=fig_font, title=title)
         return output_png(file=filename,code=201)
       except Exception as e:
         abort(404, message='got error')
@@ -97,8 +98,9 @@ class Plot_all_data(Resource):
       temp_dir=get_temp_dir(work_dir=work_dir)
       os.chdir(temp_dir)
       filename='all_histone.png'
+      title='Peak counts for all histone marks'
       filename=os.path.join(temp_dir,filename)
-      plot_box_chart(dataframe=peak_data.T, filename=filename, chr_list=chr_list, fig_width=fig_width, fig_height=fig_height, fig_font=fig_font)
+      plot_box_chart(dataframe=peak_data.T, filename=filename, chr_list=chr_list, fig_width=fig_width, fig_height=fig_height, fig_font=fig_font, title=title)
       return output_png(file=filename,code=201)
     except Exception as e:
       abort(404, message='got error')
