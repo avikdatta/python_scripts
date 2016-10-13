@@ -4,9 +4,9 @@ This script can read a csv file containing the per chromosome peak counts for ea
 ## Usage
 
 ### Run Api script
-<pre><code>
-python plot_bed_peak_for_group_rest_api.py -w /home/pi/python_dev/project1/ -i /home/pi/python_dev/project1/data/20160816.data.index -d /home/ -p HOST_IP
-</pre></code>
+  <pre><code>
+  python plot_bed_peak_for_group_rest_api.py -w /path/work_dir -i INDEX_FILE -d CSV_DATA -p HOST_IP
+  </pre></code>
 
 ### REST Query example
 
