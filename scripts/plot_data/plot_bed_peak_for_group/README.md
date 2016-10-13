@@ -1,4 +1,4 @@
-# A REST Api for preparing bed peak count plots
+# A REST Api for preparing ChIP-Seq peak count boxplot
 This script can read a csv file containing the per chromosome peak counts for each ChIP-Seq bed file and an index file containing the experiment metadata (similar to this [file](http://ftp.ebi.ac.uk/pub/databases/blueprint/releases/current_release/homo_sapiens/20160816.data.index)). CSV dataframe can be prepared using the [get_all_ftp_bed_files_to_dataframe.py](https://github.com/avikdatta/python_scripts/blob/master/scripts/prepare_dataframe/bed_dataframe_script/get_all_ftp_bed_files_to_dataframe.py) script.
 
 ## Usage
