@@ -29,7 +29,13 @@ http://127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&chr=chr6&c
 
 * Change dimension of the boxplot
 <pre><code>
-http://192.168.0.8:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&fig_font=12&fig_width=12&fig_height=8
+http://127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&fig_font=12&fig_width=12&fig_height=8
+</pre></code>
+
+* Get peak count plot for any specific celltype and histone
+
+<pre><code>
+http://127.0.0.1:5000/cell_types?cell_type=monocyte&histone=H3K4me1
 </pre></code>
 
 #### Using curl
@@ -54,6 +60,12 @@ http://192.168.0.8:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&fig_font
   <pre><code>
   curl 127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&fig_font=12&fig_width=12&fig_height=8 -X GET >plot.png
   </pre></code>
+
+* Get peak count plot for any specific celltype and histone
+
+<pre><code>
+curl 127.0.0.1:5000/cell_types -X GET -d "cell_type=monocyte" -d "histone=H3K4me1"
+</pre></code>
 
 ## Option
 

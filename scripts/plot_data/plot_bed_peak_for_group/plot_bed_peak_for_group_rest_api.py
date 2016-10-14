@@ -108,10 +108,61 @@ class Plot_all_data(Resource):
       clean_temp_dir(temp_dir)
 
       
+class Plot_cell_type(Resource):
+  '''
+  Plot peak count for specific celltype
+  '''
+  def get(self):
+    h_parser=reqparse.RequestParser()
+    h_parser.add_argument('histone', default=allowed_histone, action='append', help='Histone mark name')
+    h_parser.add_argument('cell_type', required=True, help='Cell type name')
+    h_parser.add_argument('chr', default=chrs, action='append', help='Lists of chromosomes')
+    h_parser.add_argument('fig_width', type=int, default=12, help='Figure width')
+    h_parser.add_argument('fig_height', type=int, default=8, help='Figure height')
+    h_parser.add_argument('fig_font', type=int, default=10, help='Figure fontsize')
+ 
+    h_args=h_parser.parse_args()
 
-    
-api.add_resource(Plot_histone, '/histone_peak')
+    chr_list   = h_args['chr']
+    cell_type  = h_args['cell_type']
+    histone    = h_args['histone']
+    fig_width  = h_args['fig_width']
+    fig_height = h_args['fig_height']
+    fig_font   = h_args['fig_font']
+
+
+    cell_type_exp_list=[]
+    cell_types_list=[]
+    try:
+      for h_name in histone:
+        try:
+          new_list=list(index_data[index_data.CELL_TYPE.str.contains(cell_type)].groupby('LIBRARY_STRATEGY').get_group('ChIP-Seq').groupby('EXPERIMENT_TYPE').get_group(h_name).groupby('EXPERIMENT_ID').groups.keys())
+          cell_types_list.extend(list(index_data[index_data.CELL_TYPE.str.contains(cell_type)].groupby('LIBRARY_STRATEGY').get_group('ChIP-Seq').groupby('EXPERIMENT_TYPE').get_group(h_name)['CELL_TYPE'].unique()))
+        except Exception as e:
+          print('got an error:{0}'.format(e))
+        else:
+          if len(new_list)>0: cell_type_exp_list.extend(new_list)
+        
+      if not cell_type_exp_list:
+        raise Exception('no experiment found for cell type:{0}'.format(cell_type))
+          
+      temp_dir=get_temp_dir(work_dir=work_dir)
+      os.chdir(temp_dir)
+      filename='cell_type.png'
+      filename=os.path.join(temp_dir,filename)
+      title='Peak count for cell types'
+      figtext='Cell type list:\n'+'\n'.join(set(cell_types_list))
+      
+      plot_box_chart(dataframe=peak_data[cell_type_exp_list].T, filename=filename, chr_list=chr_list, fig_width=fig_width, fig_height=fig_height, fig_font=fig_font, title=title, text=figtext)
+      return output_png(file=filename,code=201)
+    except Exception as e:
+      abort(404,message='got error: {0}'.format(e))
+    else:
+      clean_temp_dir(temp_dir) 
+     
+api.add_resource(Plot_histone,  '/histone_peak')
 api.add_resource(Plot_all_data, '/all_histone')
+api.add_resource(Plot_cell_type,'/cell_types')
 
 if __name__=='__main__':
   app.run(host=host)

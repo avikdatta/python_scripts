@@ -3,14 +3,16 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def plot_box_chart(dataframe, filename,chr_list, fig_width=12, fig_height=8, fig_font=10, title='Peak count Boxplot'):
+def plot_box_chart(dataframe, filename,chr_list, fig_width=12, fig_height=8, fig_font=10, title='Peak count Boxplot', text=''):
   '''
   Plot dataframe as boxplot using Matplotlib
   '''
   plt.figure(figsize=(fig_width,fig_height))
   plt.autoscale(enable=True)
+ 
   plt.title(title)
-  dataframe[chr_list].boxplot(fontsize=fig_font,return_type='dict')
+  plt.figtext(.95,.8,text, size='small')
+  dataframe[chr_list].boxplot(fontsize=fig_font,return_type='dict', rot=45)
   plt.savefig(filename,bbox_inches='tight')
   plt.close("all")
 
