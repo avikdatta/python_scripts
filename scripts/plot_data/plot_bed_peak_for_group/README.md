@@ -36,7 +36,6 @@ http://127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&fig_font=1
 
 <pre><code>
 http://127.0.0.1:5000/cell_types?cell_type=monocyte&histone=H3K4me1
-=======
 </pre></code>
 
 #### Using curl
