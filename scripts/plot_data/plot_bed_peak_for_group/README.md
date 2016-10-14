@@ -41,18 +41,18 @@ http://127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&fig_font=1
 
 * Get a boxplot for selected histone mark
   <pre><code>
-  curl 127.0.0.1:5000/histone_peak?histone=H3K27ac > plot.png
+  curl 127.0.0.1:5000/histone_peak -d "histone=H3K27ac" -X GET > plot.png
   </pre></code>
 
 
 * Generate a boxplot for selected chromosome
   <pre><code>
-  curl 127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&chr=chr6&chr=chr21 -X GET >plot.png
+  curl 127.0.0.1:5000/all_histone -d "chr=chr1" -d "chr=chr2" -d "chr=chr3" -d "chr=chr4" -X GET >plot.png
   </pre></code>
 
 * Change dimension of the boxplot
   <pre><code>
-  curl 127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&fig_font=12&fig_width=12&fig_height=8 -X GET >plot.png
+  curl 127.0.0.1:5000/all_histone -d "chr=chr1" -d "chr=chr2" -d "chr=chr3" -d "chr=chr4" -d "fig_font=12" -d "fig_width=12 -d "fig_height=8" -X GET >plot.png
   </pre></code>
 
 ## Option
