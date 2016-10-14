@@ -13,30 +13,29 @@ This script can read a csv file containing the per chromosome peak counts for ea
 #### Using browser
 
 * Generate a boxplot of peak counts for all experiments
-<pre><code>
-http://127.0.0.1:5000/all_histone
-</pre></code>
+  <pre><code>
+  http://127.0.0.1:5000/all_histone
+  </pre></code>
 
 * Get a boxplot for selected histone mark 
-<pre><code>
-http://127.0.0.1:5000/histone_peak?histone=H3K27ac
-</pre></code>
+  <pre><code>
+  http://127.0.0.1:5000/histone_peak?histone=H3K27ac
+  </pre></code>
 
 * Generate a boxplot for selected chromosome
-<pre><code>
-http://127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&chr=chr6&chr=chr21
-</pre></code>
+  <pre><code>
+  http://127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&chr=chr6&chr=chr21
+  </pre></code>
 
 * Change dimension of the boxplot
-<pre><code>
-http://127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&fig_font=12&fig_width=12&fig_height=8
-</pre></code>
+  <pre><code>
+  http://127.0.0.1:5000/all_histone?chr=chr1&chr=chr2&chr=chr3&chr=chr4&fig_font=12&fig_width=12&fig_height=8
+  </pre></code>
 
 * Get peak count plot for any specific celltype and histone
-
-<pre><code>
-http://127.0.0.1:5000/cell_types?cell_type=monocyte&histone=H3K4me1
-</pre></code>
+  <pre><code>
+  http://127.0.0.1:5000/cell_types?cell_type=monocyte&histone=H3K4me1
+  </pre></code>
 
 #### Using curl
 
@@ -62,20 +61,19 @@ http://127.0.0.1:5000/cell_types?cell_type=monocyte&histone=H3K4me1
   </pre></code>
 
 * Get peak count plot for any specific celltype and histone
-
-<pre><code>
-curl 127.0.0.1:5000/cell_types -X GET -d "cell_type=monocyte" -d "histone=H3K4me1"
-</pre></code>
+  <pre><code>
+  curl 127.0.0.1:5000/cell_types -X GET -d "cell_type=monocyte" -d "histone=H3K4me1"
+  </pre></code>
 
 ## Option
 
-<pre><code>
+  <pre><code>
   -h /--help                   : Show this help message and exit
   -w /--work_dir WORK_DIR      : Work directory
   -i /--index_file INDEX_FILE  : Index file contataining the bed file path
   -d /--csv_data CSV_DATA      : CSV dataframe containing BED peak counts per chromosome
   -p /--host HOST              : REST api host ip
-</pre></code>
+  </pre></code>
 
 ## Requirement
 
