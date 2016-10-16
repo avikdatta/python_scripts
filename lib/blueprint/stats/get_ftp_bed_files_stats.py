@@ -77,18 +77,20 @@ def get_ftp_file(ftp_url, dir, file):
     ftp.retrbinary('RETR '+file, open(file,'wb').write)
     ftp.quit()
 
-def read_ftp_file(work_dir, ftp_url, dir, file):
+def read_ftp_file(work_dir, ftp_url, dir, file, use_temp_dir=True):
   json_list=[]
   try:
-    temp_dir=get_temp_dir(work_dir=work_dir)
-    os.chdir(temp_dir)
+    if use_temp_dir:
+      temp_dir=get_temp_dir(work_dir=work_dir)
+      os.chdir(temp_dir)
     get_ftp_file(ftp_url=ftp_url, dir=dir, file=file)
     json_list=read_bed_file(file)
   except Exception as e:
     print('got error: %s' % e)
   finally:
-    os.chdir(work_dir)
-    clean_temp_dir(temp_dir)
+    if use_temp_dir:
+      os.chdir(work_dir)
+      clean_temp_dir(temp_dir)
   return json_list
  
 def get_bed_stats(work_dir, ftp_url, dir, file, prefix):
