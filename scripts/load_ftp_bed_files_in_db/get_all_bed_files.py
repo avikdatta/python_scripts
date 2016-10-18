@@ -67,7 +67,12 @@ def get_ftp_bed_files_from_index(index, ftp_url, dir_prefix, work_dir):
           file_uri=urlunparse(('http',ftp_url, dir_prefix + file_uri,'','',''))
           url=urlsplit(file_uri)
           (dir_path, file_path)=os.path.split(url.path)
-          get_ftp_file(ftp_url=url.netloc, dir=dir_path, file=file_path)      
+
+          # Download FTP file
+          try:
+            get_ftp_file(ftp_url=url.netloc, dir=dir_path, file=file_path)      
+          except Exception as e:
+            print('Download failed for exp: {0}, file:{1}'.format(exp_id, file_path))
 
           output_file=os.path.join(work_dir, file_path)
 
@@ -77,7 +82,7 @@ def get_ftp_bed_files_from_index(index, ftp_url, dir_prefix, work_dir):
 
           yield exp_id, output_file
       except Exception as e:
-        print('got error %s' % e)
+        print('got error {0}'.format(e))
   
 
 def db_store_bed_file(db_conn, exp_id, file, table_name='bed_files'):
