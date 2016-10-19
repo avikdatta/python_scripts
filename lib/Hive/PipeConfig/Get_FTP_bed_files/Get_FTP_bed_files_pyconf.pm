@@ -1,4 +1,4 @@
-package Hive::PipeConfig::Get_FTP_bed_files_pyconf;
+package Hive::PipeConfig::Get_FTP_bed_files::Get_FTP_bed_files_pyconf;
 
 use strict;
 use warnings;
