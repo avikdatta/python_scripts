@@ -11,7 +11,7 @@ class Fetch_ftp_file(eHive.BaseRunnable):
     (ftp_dir_path, ftp_file_path)=os.path.split(url.path)    
 
     # set params
-    self.param('ftp_url')=url.netloc
+    self.param('ftp_url', url.netloc)
     self.param('ftp_dir_path', ftp_dir_path)
     self.param('ftp_file_path', ftp_file_path)
 
@@ -33,8 +33,7 @@ class Fetch_ftp_file(eHive.BaseRunnable):
       os.chdir(temp_dir)
       get_ftp_file(ftp_url=ftp_url, dir=ftp_dir_path, file=ftp_file_path)
     except Exception as e:
-      self.warning('failed to download file: {0}, error: {1}'.format(ftp_file_path,e))   
-      sys.exit(2)
+      sys.exit('failed to download file: {0}, error: {1}'.format(ftp_file_path,e))
     else:
       move(temp_file, output_file_path)
       self.param('output_file_path', output_file_path)

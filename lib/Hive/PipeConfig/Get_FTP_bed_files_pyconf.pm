@@ -9,15 +9,14 @@ sub default_options {
   my ($self) = @_;
   return {
     %{ $self->SUPER::default_options() },
-    'store_dir'  => undef,
-    'index_file' => undef,
-    'dbhost'     => 'localhost',
-    'dbport'     => 3306,
-    'dbname'     => undef,
-    'dbuser'     => undef,
-    'dbpass'     => undef,
-    'dbtable'    => 'bed_files,
-  ];  
+    'store_dir'       => undef,
+    'index_file'      => undef,
+    'file_dbhost'     => 'localhost',
+    'file_dbport'     => 3306,
+    'file_dbname'     => undef,
+    'file_dbuser'     => undef,
+    'file_dbpass'     => undef,
+  };  
 }
 
 sub pipeline_create_commands {
@@ -46,16 +45,15 @@ sub pipeline_analyses {
   my ($self) = @_;
   return [
     { -logic_name  => 'bed_file_factory',
-      -module      => 'eHive.Runnable.Ftp_bed_file_factory',
+      -module      => 'eHive_files.Runnable.Ftp_bed_file_factory',
       -language    => 'python3',
       -meadow_type => 'LOCAL', 
-      ],
       -flow_into => {
         2 => ['fetch_ftp_file'],
       },
     },
     { -logic_name  => 'fetch_ftp_file',
-      -module      => 'eHive.Runnable.Fetch_ftp_file',
+      -module      => 'eHive_files.Runnable.Fetch_ftp_file',
       -language    => 'python3',
       -meadow_type => 'LOCAL',
       -parameters    => {
@@ -66,7 +64,7 @@ sub pipeline_analyses {
       },  
     },
     { -logic_name  => 'store_db_file', 
-      -module      => 'eHive.Runnable.Store_db_file',
+      -module      => 'eHive_files.Runnable.Store_db_file',
       -language    => 'python3',
       -meadow_type => 'LOCAL',
       -parameters    => {
@@ -75,7 +73,6 @@ sub pipeline_analyses {
         'dbname' => $self->o('file_dbname'),
         'dbuser' => $self->o('file_dbuser'),
         'dbpass' => $self->o('file_dbpass'),
-        'dbtable'=> $self->o('file_dbtable'),
       },
     },
   ];
