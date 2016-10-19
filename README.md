@@ -10,3 +10,4 @@ This is a repository for python scripts
 * A [script](scripts/prepare_dataframe) for generation of the ChIP-Seq peak count dataframe.
 * A [REST Api](scripts/plot_data/plot_bed_peak_for_group/) for generating ChIP-Seq peak count boxplot.
 * A [script](scripts/load_ftp_bed_files_in_db) for downloading all ChIP-Seq peak call bed files from FTP site.
+* An [eHive pipeline](/lib/Hive/PipeConfig/Get_FTP_bed_files) for downloading ChIP-Seq peak call bed files from FTP
