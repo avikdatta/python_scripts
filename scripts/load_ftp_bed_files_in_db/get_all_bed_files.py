@@ -68,6 +68,11 @@ def get_ftp_bed_files_from_index(index, ftp_url, dir_prefix, work_dir):
           url=urlsplit(file_uri)
           (dir_path, file_path)=os.path.split(url.path)
 
+
+          # check for file before downloading
+          if os.path.exists(output_file):
+            raise Exception('file {0} already present'.format(output_file))
+
           # Download FTP file
           try:
             get_ftp_file(ftp_url=url.netloc, dir=dir_path, file=file_path)      
