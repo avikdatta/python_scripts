@@ -1,5 +1,5 @@
 site_name: Python scripts
-docs_dir: .
+docs_dir: ''
 pages:
     - 'Introduction': 'docs/index.md'
     - 'Load files': 'docs/load_file.md' 
