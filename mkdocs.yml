@@ -1,4 +1,4 @@
 site_name: Python scripts
 pages:
     - 'Introduction': 'index.md'
-    - 'Load files': 'scripts/load_ftp_files/' 
+    - 'Load files': 'load_ftp_files.md' 
