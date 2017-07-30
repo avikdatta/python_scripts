@@ -3,7 +3,4 @@ pages:
     - 'Introduction': 'docs/index.md'
     - 'Load files': 'scripts/load_ftp_files/' 
     - 'JSON trackhub': 'scripts/index_to_json_hub/'
-    - 'JSON report for data release using REST api': 'scripts/prepare_report/index_report/json_report_rest/'
-    - 'Bed files stats using REST api': 'scripts/prepare_report/bed_files_count_report/bed_report_rest_api/'
-    - 'REST Api for generating ChIP-Seq peak count boxplot': 'scripts/plot_data/plot_bed_peak_for_group/'
-    - 'An eHive pipeline for downloading ChIP-Seq peak call bed files': 'lib/Hive/PipeConfig/Get_FTP_bed_files/'
+
