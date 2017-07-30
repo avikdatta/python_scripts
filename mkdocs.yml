@@ -3,4 +3,3 @@ pages:
     - 'Introduction': 'docs/index.md'
     - 'Load files': 'scripts/load_ftp_files/README.md' 
     - 'JSON trackhub': 'scripts/index_to_json_hub/README.md'
-
