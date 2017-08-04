@@ -1,4 +1,4 @@
-# Python scripts
+# Python scripts [![Documentation Status](https://readthedocs.org/projects/python-scripts/badge/?version=latest)](http://python-scripts.readthedocs.io/en/latest/?badge=latest)
 
 This is a repository for python scripts
 
